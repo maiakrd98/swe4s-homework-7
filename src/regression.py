@@ -1,4 +1,5 @@
 import argparse
+import sys
 import pandas as pd
 from sklearn.linear_model import LinearRegression
 from sklearn.model_selection import train_test_split
@@ -27,11 +28,38 @@ def main():
                         help='Random seed',
                         required=True)
 
+    parser.add_argument('--gene_expr_start',
+                        type=str,
+                        help='Name of first gene expression column name',
+                        required=True)
+
+    parser.add_argument('--gene_expr_end',
+                        type=str,
+                        help='Name of last gene expression column name',
+                        required=True)
+
     args = parser.parse_args()
 
-    df = pd.read_csv(args.data_file)
-    print(df.head())
+    try:
+        df = pd.read_csv(args.data_file, low_memory=False)
+    except FileNotFoundError:
+        sys.exit('Could not find ' + args.data_file)
 
+    # identify column indexes of start and end of gene expression data
+    gene_expr_start_index = -1
+    gene_expr_end_index = -1
+
+    for i,col in enumerate(df.columns):
+        if col == args.gene_expr_start:
+            gene_expr_start_index = i
+        if col == args.gene_expr_end:
+            gene_expr_end_index = i
+
+    if gene_expr_start_index == -1 or gene_expr_end_index == -1:
+        sys.exit('Expected first and last gene expression column names not found')
+
+    print(gene_expr_start_index)
+    print(gene_expr_end_index)
 
 if __name__ == "__main__":
     main()
