@@ -27,7 +27,10 @@ def main():
                         help='Random seed',
                         required=True)
 
-    pass
+    args = parser.parse_args()
+
+    df = pd.read_csv(args.data_file)
+    print(df.head())
 
 
 if __name__ == "__main__":
