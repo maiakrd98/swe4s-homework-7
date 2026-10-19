@@ -58,8 +58,13 @@ def main():
     if gene_expr_start_index == -1 or gene_expr_end_index == -1:
         sys.exit('Expected first and last gene expression column names not found')
 
-    print(gene_expr_start_index)
-    print(gene_expr_end_index)
+    X = df.iloc[:,gene_expr_start_index:(gene_expr_end_index+1)]
+    y = df.loc[:,"overall_survival_months"]
+
+    X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=args.seed, shuffle=True)
+    model = LinearRegression()
+    model.fit(X_train, y_train)
+    #y_pred = model.predict(X_test)
 
 if __name__ == "__main__":
     main()
