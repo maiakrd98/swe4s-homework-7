@@ -74,5 +74,14 @@ def main():
     plt.savefig(args.out_folder + "/actual_vs_predicted_survival.png")
     plt.close()
 
+    plt.hist(y_test-y_pred, bins = 20)
+    plt.axvline(x=0, color='purple', linestyle='--')
+    plt.title("Residuals distribution")
+    plt.xlabel("Residuals (actual survival months - predicted survival months)")
+    plt.ylabel("Frequency")
+    plt.savefig(args.out_folder + "/residuals.png")
+    plt.close()
+
+
 if __name__ == "__main__":
     main()
