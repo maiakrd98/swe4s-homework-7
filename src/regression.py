@@ -64,7 +64,15 @@ def main():
     X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=args.seed, shuffle=True)
     model = LinearRegression()
     model.fit(X_train, y_train)
-    #y_pred = model.predict(X_test)
+    y_pred = model.predict(X_test)
+
+    plt.scatter(y_test, y_pred)
+    plt.plot([min(y_test), max(y_test)], [min(y_test), max(y_test)], color='purple', linestyle='--')
+    plt.title("Testing data: actual vs predicted survival")
+    plt.xlabel("Actual survival months")
+    plt.ylabel("Predicted survival months")
+    plt.savefig(args.out_folder + "/actual_vs_predicted_survival.png")
+    plt.close()
 
 if __name__ == "__main__":
     main()
