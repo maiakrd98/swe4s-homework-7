@@ -76,7 +76,8 @@ def main():
              [min(y_test), max(y_test)],
              color='purple',
              linestyle='--')
-    plt.title("Testing data: actual vs predicted survival")
+    plt.title("Testing data: actual vs predicted survival "
+              "(seed " + str(args.seed) + ")")
     plt.xlabel("Actual survival months")
     plt.ylabel("Predicted survival months")
     plt.savefig(args.out_folder + "/actual_vs_predicted_survival.png")
@@ -84,7 +85,7 @@ def main():
 
     plt.hist(y_test-y_pred, bins=20)
     plt.axvline(x=0, color='purple', linestyle='--')
-    plt.title("Residuals distribution")
+    plt.title("Residuals distribution (seed " + str(args.seed) + ")")
     plt.xlabel("Residuals (actual survival months - "
                "predicted survival months)")
     plt.ylabel("Frequency")
@@ -104,7 +105,8 @@ def main():
              color=colors)
     plt.xlabel("Coefficient value")
     plt.ylabel("Gene name")
-    plt.suptitle("Gene importance (linear regression coefficients)")
+    plt.suptitle("Gene importance (linear regression coefficients) "
+                 "(seed " + str(args.seed) + ")")
     plt.title("Top 5 positive (green) and negative (red) coefficients",
               fontsize=10)
     plt.savefig(args.out_folder + "/coefficients.png")
