@@ -1,0 +1,8 @@
+name: swe4s-hw7
+channels:
+  - conda-forge
+dependencies:
+  - matplotlib
+  - pandas
+  - pycodestyle
+  - scikit-learn
