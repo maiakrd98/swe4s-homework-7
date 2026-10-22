@@ -28,6 +28,7 @@ This environment contains `pycodestyle` for checking that python code is complia
 
 Next, run
 ```
+mkdir data
 curl -L "https://drive.google.com/uc?export=download&id=1eCcqT58g8Of5svxiLxyArH_RIjuTs0LM" -o data/METABRIC_RNA_Mutation.csv
 ```
 to import the required data file (which is not committed to the repository because it is too big).
